@@ -11,6 +11,7 @@ var CROSSOVER_PROBABILITY;
 var MUTATION_PROBABILITY;
 var OX_CROSSOVER_RATE;
 var UNCHANGED_GENS;
+var SALES_MEN;
 
 var mutationTimes;
 var dis;
@@ -31,7 +32,7 @@ $(function() {
     $('#status').text("");
     running = false;
   });
-  $('#start_btn').click(function() { 
+  $('#start_btn').click(function() {
     if(points.length >= 3) {
       initData();
       GAInitialize();

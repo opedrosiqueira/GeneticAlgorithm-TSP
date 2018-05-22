@@ -10,31 +10,13 @@ function GANextGeneration() {
   selection();
   crossover();
   mutation();
-
-  //if(UNCHANGED_GENS > POPULATION_SIZE + ~~(points.length/10)) {
-    //MUTATION_PROBABILITY = 0.05;
-    //if(doPreciseMutate) {
-    //  best = preciseMutate(best);
-    //  best = preciseMutate1(best);
-    //  if(evaluate(best) < bestValue) {
-    //    bestValue = evaluate(best);
-    //    UNCHANGED_GENS = 0;
-    //    doPreciseMutate = true;
-    //  } else {
-    //    doPreciseMutate = false;
-    //  }
-    //}
-  //} else {
-    //doPreciseMutate = 1;
-    //MUTATION_PROBABILITY = 0.01;
-  //}
   setBestValue();
 }
 function tribulate() {
   //for(var i=0; i<POPULATION_SIZE; i++) {
   for(var i=population.length>>1; i<POPULATION_SIZE; i++) {
     population[i] = randomIndivial(points.length);
-  }	
+  }
 }
 function selection() {
   var parents = new Array();
@@ -56,32 +38,12 @@ function crossover() {
     if( Math.random() < CROSSOVER_PROBABILITY ) {
       queue.push(i);
     }
-  } 
+  }
   queue.shuffle();
   for(var i=0, j=queue.length-1; i<j; i+=2) {
     doCrossover(queue[i], queue[i+1]);
-    //oxCrossover(queue[i], queue[i+1]);
   }
 }
-//function oxCrossover(x, y) {	
-//  //var px = population[x].roll();
-//  //var py = population[y].roll();
-//  var px = population[x].slice(0);
-//  var py = population[y].slice(0);
-
-//  var rand = randomNumber(points.length-1) + 1;
-//  var pre_x = px.slice(0, rand);
-//  var pre_y = py.slice(0, rand);
-
-//  var tail_x = px.slice(rand, px.length);
-//  var tail_y = py.slice(rand, py.length);
-
-//  px = tail_x.concat(pre_x);
-//  py = tail_y.concat(pre_y);
-
-//  population[x] = pre_y.concat(px.reject(pre_y));
-//  population[y] = pre_x.concat(py.reject(pre_x));
-//}
 function doCrossover(x, y) {
   child1 = getChild('next', x, y);
   child2 = getChild('previous', x, y);
@@ -117,7 +79,7 @@ function mutation() {
     }
   }
 }
-function preciseMutate(orseq) {  
+function preciseMutate(orseq) {
   var seq = orseq.clone();
   if(Math.random() > 0.5){
     seq.reverse();
@@ -133,7 +95,7 @@ function preciseMutate(orseq) {
   //alert(bestv);
   return seq;
 }
-function preciseMutate1(orseq) {  
+function preciseMutate1(orseq) {
   var seq = orseq.clone();
   var bestv = evaluate(seq);
 
@@ -246,7 +208,7 @@ function countDistances() {
   for(var i=0; i<length; i++) {
     dis[i] = new Array(length);
     for(var j=0; j<length; j++) {
-      dis[i][j] = ~~distance(points[i], points[j]); 
+      dis[i][j] = ~~distance(points[i], points[j]);
     }
   }
 }
