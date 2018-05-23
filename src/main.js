@@ -84,16 +84,16 @@ function initData() {
   ELITE_RATE = 0.3;
   CROSSOVER_PROBABILITY = 0.9;
   MUTATION_PROBABILITY  = 0.01;
-  //OX_CROSSOVER_RATE = 0.05;
   UNCHANGED_GENS = 0;
   mutationTimes = 0;
   doPreciseMutate = true;
 
+  SALES_MEN = 3;
   bestValue = undefined;
   best = [];
   currentGeneration = 0;
   currentBest;
-  population = []; //new Array(POPULATION_SIZE);
+  population = [];
   values = new Array(POPULATION_SIZE);
   fitnessValues = new Array(POPULATION_SIZE);
   roulette = new Array(POPULATION_SIZE);
@@ -105,7 +105,10 @@ function addRandomPoints(number) {
   }
 }
 function drawCircle(point) {
-  ctx.fillStyle   = '#000';
+  if(point.hasOwnProperty('isCenter'))
+    ctx.fillStyle = '#0f0';
+  else
+    ctx.fillStyle   = '#000';
   ctx.beginPath();
   ctx.arc(point.x, point.y, 3, 0, Math.PI*2, true);
   ctx.closePath();
