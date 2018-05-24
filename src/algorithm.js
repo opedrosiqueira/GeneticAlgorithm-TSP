@@ -211,4 +211,5 @@ function countDistances() {
       dis[i][j] = ~~distance(points[i], points[j]);
     }
   }
+  dis[0][0] = Number.MAX_SAFE_INTEGER;
 }

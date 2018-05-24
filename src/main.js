@@ -147,7 +147,7 @@ function draw() {
     for(var i=0; i<points.length; i++) {
       drawCircle(points[i]);
     }
-    if(best.length === points.length) {
+    if(best.length - SALES_MEN + 1 === points.length) {
       drawLines(best);
     }
   }
