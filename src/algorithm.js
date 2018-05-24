@@ -189,7 +189,7 @@ function wheelOut(rand) {
   }
 }
 function randomIndivial(n) {
-  var a = [];
+  var a = [0];
   for(var i=0; i<n; i++) {
     a.push(i);
   }

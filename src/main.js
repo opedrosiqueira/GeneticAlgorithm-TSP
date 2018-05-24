@@ -75,6 +75,8 @@ function init_mouse() {
       x = evt.pageX - canvasMinX;
       y = evt.pageY - canvasMinY;
       points.push(new Point(x, y));
+      if(points.length == 1)
+        points[0].isCenter = true;
     }
   });
 }
@@ -88,7 +90,7 @@ function initData() {
   mutationTimes = 0;
   doPreciseMutate = true;
 
-  SALES_MEN = 3;
+  SALES_MEN = 2;
   bestValue = undefined;
   best = [];
   currentGeneration = 0;
@@ -103,12 +105,14 @@ function addRandomPoints(number) {
   for(var i = 0; i<number; i++) {
     points.push(randomPoint());
   }
+  if(points.length == number)
+    points[0].isCenter = true;
 }
 function drawCircle(point) {
   if(point.hasOwnProperty('isCenter'))
     ctx.fillStyle = '#0f0';
   else
-    ctx.fillStyle   = '#000';
+    ctx.fillStyle  = '#000';
   ctx.beginPath();
   ctx.arc(point.x, point.y, 3, 0, Math.PI*2, true);
   ctx.closePath();
