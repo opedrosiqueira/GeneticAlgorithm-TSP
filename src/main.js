@@ -25,7 +25,7 @@ var roulette;
 $(function() {
   init();
   initData();
-  points = data200;
+  points = datacustom;
   $('#addRandom_btn').click(function() {
     addRandomPoints(50);
     $('#status').text("");
@@ -54,6 +54,9 @@ $(function() {
       running = true;
     } else {
       running = false;
+      if(best.length === points.length) {
+        printLines(best);
+      }
     }
   });
 });
@@ -123,6 +126,14 @@ function drawLines(array) {
 
   ctx.stroke();
   ctx.closePath();
+}
+function printLines(array) {
+  str = `[${JSON.stringify(points[array[0]])}`;
+  for (var i = 1; i < array.length; i++) {
+    str += `,${JSON.stringify(points[array[i]])}`;
+  }
+  str += ("]");
+  console.log(str);
 }
 function draw() {
   if(running) {
